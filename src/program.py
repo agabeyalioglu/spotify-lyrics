@@ -14,9 +14,9 @@ def fetch_metadata():
                                             "Metadata")
 
         artist = metadata['xesam:artist'][0]
-        song = metadata['xesam:title']
-
-        return artist, song
+        title = metadata['xesam:title']
+    
+        return artist, title.split('(')
 
         # print(artist, song, sep=' --- ')
         
