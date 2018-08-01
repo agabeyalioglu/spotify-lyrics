@@ -30,3 +30,5 @@ def fetch_lyrics(song_artist, song_title):
 
 def main():
     fetch_lyrics(*fetch_metadata())
+
+main()
