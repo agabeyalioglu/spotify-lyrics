@@ -1,7 +1,7 @@
 #!/bin/python
 
 from bs4 import BeautifulSoup
-import urllib3, dbus
+import urllib3, dbus, re
 
 def fetch_metadata():
     try:
@@ -16,7 +16,7 @@ def fetch_metadata():
         artist = metadata['xesam:artist'][0]
         title = metadata['xesam:title']
     
-        return artist, title.split('(')
+        return artist, re.split("[,\-!(?:]+", title)[0]
 
         # print(artist, song, sep=' --- ')
         
@@ -26,7 +26,7 @@ def fetch_metadata():
         print(e)
 
 def fetch_lyrics(song_artist, song_title):
-    pass
+    print(song_artist, song_title)
 
 def main():
     fetch_lyrics(*fetch_metadata())
