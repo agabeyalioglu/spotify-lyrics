@@ -6,12 +6,9 @@ import urllib3, dbus, re
 def fetch_metadata():
     try:
         bus = dbus.SessionBus()
-        spotify_bus = bus.get_object("org.mpris.MediaPlayer2.spotify",
-                                            "/org/mpris/MediaPlayer2")
-        spotify_properties = dbus.Interface(spotify_bus,
-                                            "org.freedesktop.DBus.Properties")
-        metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", 
-                                            "Metadata")
+        spotify_bus = bus.get_object("org.mpris.MediaPlayer2.spotify", "/org/mpris/MediaPlayer2")
+        spotify_properties = dbus.Interface(spotify_bus, "org.freedesktop.DBus.Properties")
+        metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
 
         artist = metadata['xesam:artist'][0]
         title = metadata['xesam:title']
@@ -27,8 +24,3 @@ def fetch_metadata():
 
 def fetch_lyrics(song_artist, song_title):
     print(song_artist, song_title)
-
-def main():
-    fetch_lyrics(*fetch_metadata())
-
-main()
