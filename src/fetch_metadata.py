@@ -1,7 +1,4 @@
-#!/bin/python
-
-from bs4 import BeautifulSoup
-import urllib3, dbus, re
+import dbus, re
 
 def fetch_metadata():
     try:
@@ -22,5 +19,3 @@ def fetch_metadata():
     except Exception as e:
         print(e)
 
-def fetch_lyrics(song_artist, song_title):
-    print(song_artist, song_title)

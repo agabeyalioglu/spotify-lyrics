@@ -1,4 +1,6 @@
-import program, gui
+#!/bin/python
+
+import fetch_lyrics, gui
 
 if __name__ == '__main__':
-    program.fetch_lyrics(*program.fetch_metadata())
+    pass
