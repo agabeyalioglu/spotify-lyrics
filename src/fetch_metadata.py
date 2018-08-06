@@ -10,8 +10,8 @@ def fetch_metadata():
         artist = metadata['xesam:artist'][0]
         title = metadata['xesam:title']
     
-        return artist, re.split("[,\-!(?:]+", title)[0]
-        
+        return artist, re.split("[,\\!-(?:]+", title)[0]
+
     except Exception as e:
         print(e)
 
