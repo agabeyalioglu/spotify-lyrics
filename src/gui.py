@@ -2,10 +2,9 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import sys
-#sender and receiver = " "
 from bs4 import BeautifulSoup
 import requests, re
-
+#sender and receiver = " "
 def fetch_lyrics(song_artist, song_title):
     google_base_url = "https://www.google.com/search"
 
