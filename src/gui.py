@@ -28,7 +28,7 @@ def sendingToMail(song_title,song_Artist,sender_mail,sender_mail_pass,receiver):
     message["From"] = sender_mail    
     message["To"] = receiver    
     message["Subject"] = song_title #song title    
-    lyrics = fetch_lyrics(song_Artist,song_title)
+    lyrics = song_title+"\n"+fetch_lyrics(song_Artist,song_title)
     messageBody = MIMEText(lyrics,"plain")    
     message.attach(messageBody)    
     try:        
