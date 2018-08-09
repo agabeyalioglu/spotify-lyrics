@@ -5,9 +5,34 @@ import sys
 from bs4 import BeautifulSoup
 import requests, re
 from fetch_lyrics import fetch_lyrics
+from PyQt5 import QtWidgets
 #sender and receiver = " "
+class Window(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
 
-def sendingToMail(song_title, song_Artist, sender_mail, sender_mail_pass, receiver):    
+    def init_ui(self):
+        self.yaziAlani = QtWidgets.QTextEdit()
+        self.yaziAlani.setText(fetch_lyrics("hozier","take me to church"))
+        self.yaziAlani.setReadOnly(True)
+        self.temizle = QtWidgets.QPushButton("Clear")
+        v_box = QtWidgets.QVBoxLayout()
+        v_box.addWidget(self.yaziAlani)
+        v_box.addWidget(self.temizle)
+        self.setLayout(v_box)
+        self.temizle.clicked.connect(self.click)
+        self.setWindowTitle("Lyric")
+        self.show()
+    
+    def click(self):
+        self.yaziAlani.clear()
+
+app = QtWidgets.QApplication(sys.argv)
+pencere = Window()
+sys.exit(app.exec_())
+
+ def sendingToMail(song_title, song_Artist, sender_mail, sender_mail_pass, receiver):    
     message = MIMEMultipart()    
     message["From"] = sender_mail    
     message["To"] = receiver    
@@ -25,4 +50,4 @@ def sendingToMail(song_title, song_Artist, sender_mail, sender_mail_pass, receiv
         mail.close()    
     except Exception as e:        
         print(e)
-sendingToMail("take me to church","hozier","senin adresin","seninm sifren","gonderilcek adres")
+# Example : sendingToMail("take me to church","hozier","senin adresin","seninm sifren","gonderilcek adres")
