@@ -32,7 +32,7 @@ app = QtWidgets.QApplication(sys.argv)
 pencere = Window()
 sys.exit(app.exec_())
 
- def sendingToMail(song_title, song_Artist, sender_mail, sender_mail_pass, receiver):    
+def sendingToMail(song_title, song_Artist, sender_mail, sender_mail_pass, receiver):    
     message = MIMEMultipart()    
     message["From"] = sender_mail    
     message["To"] = receiver    
