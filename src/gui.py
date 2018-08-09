@@ -13,20 +13,17 @@ class Window(QtWidgets.QWidget):
         self.init_ui()
 
     def init_ui(self):
-        self.yaziAlani = QtWidgets.QTextEdit()
-        self.yaziAlani.setText(fetch_lyrics("hozier","take me to church"))
-        self.yaziAlani.setReadOnly(True)
-        self.temizle = QtWidgets.QPushButton("Clear")
+        self.lyric_area = QtWidgets.QTextEdit()
+        self.lyric_area.setText(fetch_lyrics("hozier","take me to church"))
+        self.lyric_area.setReadOnly(True)
+        
         v_box = QtWidgets.QVBoxLayout()
-        v_box.addWidget(self.yaziAlani)
-        v_box.addWidget(self.temizle)
+        v_box.addWidget(self.lyric_area)
+        
         self.setLayout(v_box)
-        self.temizle.clicked.connect(self.click)
+       
         self.setWindowTitle("Lyric")
         self.show()
-    
-    def click(self):
-        self.yaziAlani.clear()
 
 app = QtWidgets.QApplication(sys.argv)
 pencere = Window()
