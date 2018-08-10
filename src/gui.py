@@ -24,6 +24,8 @@ class Window(QtWidgets.QWidget):
         v_box = QtWidgets.QVBoxLayout()
         v_box.addWidget(self.lyric_area)
         v_box.addLayout(h_box)
+        self.buton.clicked.connect(self.click)
+        self.save_lyric.clicked.connect(self.save)
         
         self.setLayout(v_box)
         self.setWindowTitle("Lyric")
