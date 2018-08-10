@@ -1,9 +1,7 @@
-import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import sys
+import requests, re,sys,smtplib, os
 from bs4 import BeautifulSoup
-import requests, re
 from fetch_lyrics import fetch_lyrics
 from PyQt5 import QtWidgets
 #sender and receiver = " "
@@ -16,15 +14,29 @@ class Window(QtWidgets.QWidget):
         self.lyric_area = QtWidgets.QTextEdit()
         self.lyric_area.setText(fetch_lyrics("hozier","take me to church"))
         self.lyric_area.setReadOnly(True)
+        self.save_lyric = QtWidgets.QPushButton("Save Lyric")
+        self.buton =QtWidgets.QPushButton("Send to My Mail")
+        
+        h_box =QtWidgets.QHBoxLayout()
+        h_box.addWidget(self.buton)
+        h_box.addWidget(self.save_lyric)
         
         v_box = QtWidgets.QVBoxLayout()
         v_box.addWidget(self.lyric_area)
+        v_box.addLayout(h_box)
         
         self.setLayout(v_box)
-       
         self.setWindowTitle("Lyric")
         self.show()
+    def save(self):
+          file_name = QtWidgets.QFileDialog.getSaveFileName(self,"Save Lyric",os.getenv("HOME"))
 
+           with open(file_name[0],"w") as file:
+
+                file.write(self.lyric_area.toPlainText())
+    def click(self):
+        #sendingToMail(fill the blanks)
+        pass
 app = QtWidgets.QApplication(sys.argv)
 pencere = Window()
 sys.exit(app.exec_())
